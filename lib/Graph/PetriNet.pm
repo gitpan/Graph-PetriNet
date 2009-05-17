@@ -1,13 +1,13 @@
 package Graph::PetriNet;
 
-use 5.010000;
+use 5.008000;
 use strict;
 use warnings;
 
 require Exporter;
 our @ISA = qw(Exporter);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 use Class::Trait;
 
@@ -20,9 +20,11 @@ Graph::PetriNet - Perl extension for Petri Nets
 =head1 SYNOPSIS
 
   # build your places objects (see DESCRIPTION)
-  my %places = ('place1' => ...., 'place2' => ....);
+  my %places = ('place1' => ....,
+                'place2' => ....);
   # build your transition objects (see DESCRIPTION)
-  my %transitions = ('trans1' => .., 'trans2', => ....);
+  my %transitions = ('trans1' => ..,
+                     'trans2' => ....);
 
   use Graph::PetriNet;
   my $pn = new Graph::PetriNet (places      => \%places,
