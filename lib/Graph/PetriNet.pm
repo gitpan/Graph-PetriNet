@@ -7,7 +7,7 @@ use warnings;
 require Exporter;
 our @ISA = qw(Exporter);
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 use Class::Trait;
 
@@ -23,8 +23,8 @@ Graph::PetriNet - Perl extension for Petri Nets
   my %places = ('place1' => ....,
                 'place2' => ....);
   # build your transition objects (see DESCRIPTION)
-  my %transitions = ('trans1' => ..,
-                     'trans2' => ....);
+  my %transitions = ('trans1' => [ ... ],
+                     'trans2' => [ ... ]);
 
   use Graph::PetriNet;
   my $pn = new Graph::PetriNet (places      => \%places,
@@ -41,6 +41,9 @@ Graph::PetriNet - Perl extension for Petri Nets
 
   # only ignite one particular transitions
   $pn->ignite ('trans1', 'trans2'); 
+
+  my @places = $pn->places;
+  my @trans  = $pn->transitions;
 
 
 =head1 DESCRIPTION
@@ -134,8 +137,8 @@ Example:
                                            },
                                 # too lazy, happy with the default behavior
                                 transitions => {
-                                            't1' => bless ({}, 'Whatever'),
-                                            't2' => bless ({}, 'Whatever')
+                                            't1' => [ bless ({}, 'Whatever'), [ 'p1' ], [ 'p2' ] ],
+                                            't2' => [ bless ({}, 'Whatever'), [ 'p2' ], [ 'p2' ] ]
                                 });
 
 =cut
@@ -169,6 +172,34 @@ sub new {
 =head2 Methods
 
 =over
+
+=item B<places>
+
+I<@labels> = I<$pn>->places
+
+Retrieve the labels of all places in the network.
+
+=cut
+
+sub places {
+    my $self = shift;
+    return keys %{ $self->{places} };
+}
+
+=pod
+
+I<@labels> = I<$pn>->transitions
+
+Retrieve the labels of all transitions in the network.
+
+=cut
+
+sub transitions {
+    my $self = shift;
+    return keys %{ $self->{transitions} };
+}
+
+=pod
 
 =item B<things>
 

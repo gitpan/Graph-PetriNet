@@ -1,6 +1,6 @@
 ---
 name: Graph-PetriNet
-version: 0.02
+version: 0.03
 author:
   - 'Robert Barta <rho@devc.at>'
 abstract: Perl extension for Petri Nets
@@ -16,7 +16,7 @@ build_requires:
 provides:
   Graph::PetriNet:
     file: lib/Graph/PetriNet.pm
-    version: 0.02
+    version: 0.03
   Graph::PetriNet::PlaceAble:
     file: lib/Graph/PetriNet/PlaceAble.pm
   Graph::PetriNet::TransitionAble:

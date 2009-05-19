@@ -73,6 +73,12 @@ my $pn = new Graph::PetriNet (places      => \%places,
 			      initialize  => 1);
 map {is ($places{$_}->tokens, 0, "init token" )} keys %places;
 
+is_deeply ([ sort keys %places ],
+	   [ sort $pn->places ],                                            'found all place labels');
+is_deeply ([ sort keys %transitions ],
+	   [ sort $pn->transitions ],                                       'found all place labels');
+
+
 is_deeply ([ $pn->things ('x', 'y', 'a') ], [ @places{qw(x y a)} ],    'found places');
 
 {
